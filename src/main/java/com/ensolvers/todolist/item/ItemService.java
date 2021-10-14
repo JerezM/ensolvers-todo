@@ -25,4 +25,10 @@ public interface ItemService {
      * @param itemContent must not be null or empty string if you want to update this attribute.
      */
     public void updateItem(Integer itemId, String itemContent) throws ItemNotFoundException;
+
+    /**
+     * Delete the item by his id.
+     * @param itemId must not be null.
+     */
+    public void deleteItemById(Integer itemId) throws ItemNotFoundException;
 }

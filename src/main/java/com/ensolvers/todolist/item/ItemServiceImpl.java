@@ -44,5 +44,16 @@ public class ItemServiceImpl implements ItemService {
             itemFinded.setItemContent(itemContent);
         }
     }
+
+    @Override
+    public void deleteItemById(Integer itemId) throws ItemNotFoundException {
+        boolean itemExist = this.itemRepository.existsById(itemId);
+
+        if(!itemExist) {
+            throw new ItemNotFoundException("item with id: "+ itemId +" does not exist");
+        }
+
+        this.itemRepository.deleteById(itemId);
+    }
     
 }
