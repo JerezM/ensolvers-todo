@@ -2,6 +2,8 @@ package com.ensolvers.todolist.item;
 
 import java.util.List;
 
+import com.ensolvers.todolist.exception.ItemNotFoundException;
+
 public interface ItemService {
     
     /**
@@ -16,4 +18,11 @@ public interface ItemService {
      * @return The created item.
      */
     public Item addNewItem(Item itemToAdd);
+
+    /**
+     * Update the content of the item with the given id.
+     * @param itemId must not be null.
+     * @param itemContent must not be null or empty string if you want to update this attribute.
+     */
+    public void updateItem(Integer itemId, String itemContent) throws ItemNotFoundException;
 }

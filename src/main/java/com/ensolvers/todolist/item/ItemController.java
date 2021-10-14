@@ -2,13 +2,17 @@ package com.ensolvers.todolist.item;
 
 import java.util.List;
 
+import com.ensolvers.todolist.exception.ItemNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,4 +57,21 @@ public class ItemController {
         return responseEntity;
     }
 
+    @PutMapping(path = "/{itemId}")
+    public ResponseEntity<String> updateItem(@PathVariable("itemId") Integer itemId,
+                                            RequestEntity<Item> requestEntity) throws ItemNotFoundException {
+        ResponseEntity<String> responseEntity;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+                                        
+        Item itemToUpdate = requestEntity.getBody();
+        String itemContentToUpdate = itemToUpdate.getItemContent();
+
+        this.itemService.updateItem(itemId, itemContentToUpdate);
+
+        responseEntity = ResponseEntity.ok().headers(headers).build();
+
+        return responseEntity;
+    } 
 }

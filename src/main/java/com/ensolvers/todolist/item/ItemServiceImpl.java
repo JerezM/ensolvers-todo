@@ -1,6 +1,11 @@
 package com.ensolvers.todolist.item;
 
 import java.util.List;
+import java.util.Objects;
+
+import javax.transaction.Transactional;
+
+import com.ensolvers.todolist.exception.ItemNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +32,17 @@ public class ItemServiceImpl implements ItemService {
         Item addedItem = this.itemRepository.save(itemToAdd);
 
         return addedItem;
+    }
+
+    @Transactional
+    @Override
+    public void updateItem(Integer itemId, String itemContent) throws ItemNotFoundException {
+        Item itemFinded = this.itemRepository.findById(itemId)
+                            .orElseThrow(() -> new ItemNotFoundException("item with id: "+ itemId +" does not exist"));
+        
+        if( itemContent != null && itemContent.length() > 0 && !Objects.equals(itemFinded.getItemContent(), itemContent) ) {
+            itemFinded.setItemContent(itemContent);
+        }
     }
     
 }
