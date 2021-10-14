@@ -71,7 +71,8 @@ public class ItemController {
 
         this.itemService.updateItem(itemId, itemContentToUpdate);
 
-        responseEntity = ResponseEntity.ok().headers(headers).build();
+        String msg = "Item "+ itemId +" successfully updated!";
+        responseEntity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
         return responseEntity;
     } 
@@ -85,7 +86,8 @@ public class ItemController {
 
         this.itemService.deleteItemById(itemId);
 
-        responseEntity = ResponseEntity.ok().headers(headers).build();
+        String msg = "Item "+ itemId +" successfully deleted!";
+        responseEntity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
         return responseEntity;
     }
