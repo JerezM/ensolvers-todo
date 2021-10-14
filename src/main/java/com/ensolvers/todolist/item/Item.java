@@ -8,8 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+
 @Entity(name = "Item")
 @Table(name = "item")
+@DynamicInsert
 public class Item {
     
     @Id
@@ -36,9 +40,9 @@ public class Item {
 
     @Column(
             name = "marked",
-            nullable = false,
             columnDefinition = "BOOLEAN"
     )
+    @ColumnDefault("false")
     private Boolean isMarked;
 
     public Item(Integer id, String itemContent, Boolean isMarked) {
