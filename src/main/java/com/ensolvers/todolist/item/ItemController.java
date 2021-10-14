@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,21 @@ public class ItemController {
         List<Item> itemList = this.itemService.getItems();
 
         responseEntity = new ResponseEntity<List<Item>>(itemList, headers, HttpStatus.OK);
+
+        return responseEntity;
+    }
+
+    public ResponseEntity<Item> addNewItem(RequestEntity<Item> requestEntity) {
+        ResponseEntity<Item> responseEntity;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+
+        Item itemToAdd = requestEntity.getBody();
+
+        Item addedItem = this.itemService.addNewItem(itemToAdd);
+
+        responseEntity = new ResponseEntity<Item>(addedItem, headers, HttpStatus.OK);
 
         return responseEntity;
     }

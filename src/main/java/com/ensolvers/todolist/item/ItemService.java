@@ -9,4 +9,11 @@ public interface ItemService {
      * @return a collection that contain all the items.
      */
     public List<Item> getItems();
+
+    /**
+     * Create a new item using the parameterized one.
+     * @param itemToAdd must not had an id.
+     * @return The created item.
+     */
+    public Item addNewItem(Item itemToAdd);
 }

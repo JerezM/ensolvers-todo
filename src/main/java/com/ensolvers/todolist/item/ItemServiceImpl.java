@@ -21,5 +21,12 @@ public class ItemServiceImpl implements ItemService {
 
         return itemList;
     }
+
+    @Override
+    public Item addNewItem(Item itemToAdd) {
+        Item addedItem = this.itemRepository.save(itemToAdd);
+
+        return addedItem;
+    }
     
 }
