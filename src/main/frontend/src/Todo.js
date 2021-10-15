@@ -1,7 +1,6 @@
 import React from "react";
 import { getAllItems } from "./client";
 import Item from "./Item";
-import { useEffect } from "react";
 
 class Todo extends React.Component {
 
@@ -16,10 +15,6 @@ class Todo extends React.Component {
     componentDidMount() {
         this.fetchItems();
     }
-
-    /*useEffect( () => {
-      fetchItems();
-    });*/
 
     fetchItems = () => {
         this.setState({
@@ -40,7 +35,7 @@ class Todo extends React.Component {
               isFetching: false
             });
           });
-      }
+    }
 
     render() {
       const { items } = this.state;
@@ -52,6 +47,7 @@ class Todo extends React.Component {
             items.map( item => 
               <Item
                 key = {item.id}
+                id = {item.id}
                 content = {item.itemContent}
                 isMarked = {item.isMarked}
               />  
