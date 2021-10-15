@@ -13,7 +13,7 @@ const checkStatus = response => {
 }
 
 export const getAllItems = () => {
-    return fetch("http://localhost:8080/api/items").then(checkStatus);
+    return fetch('http://localhost:8080/api/items').then(checkStatus);
 };
 
 export const addNewItem = (itemContent) => {
@@ -26,6 +26,22 @@ export const addNewItem = (itemContent) => {
     })
     .then(checkStatus);
 }
+
+export const updateItem = (itemId, itemContent) => 
+    fetch('api/items/'+itemId, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT',
+        body: JSON.stringify({"itemContent": itemContent})
+    })
+    .then(checkStatus);
+
+export const deleteItem = (itemId) =>
+    fetch('api/items/'+itemId, {
+        method: 'DELETE'
+    })
+    .then(checkStatus);
 
 export const markItem = (itemId, isMarked) => {
     fetch('http://localhost:8080/api/items/'+itemId+'/mark-item', {
