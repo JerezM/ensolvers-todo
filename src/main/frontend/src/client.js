@@ -14,5 +14,5 @@ const checkStatus = response => {
 }
 
 export const getAllItems = () => {
-    axios.get("http://localhost:8080/api/items").then(checkStatus);
+    return axios.get("http://localhost:8080/api/items").then(checkStatus);
 };
