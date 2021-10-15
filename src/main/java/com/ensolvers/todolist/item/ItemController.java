@@ -95,7 +95,7 @@ public class ItemController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "{itemId}/mark-item")
+    @PutMapping(path = "{itemId}/mark-item")
     public ResponseEntity<String> markItem(@PathVariable("itemId") Integer itemId,
                                             RequestEntity<Item> requestEntity) throws ItemNotFoundException {
         ResponseEntity<String> responseEntity;

@@ -32,7 +32,7 @@ export const markItem = (itemId, isMarked) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({"isMarked": isMarked})
     })
     .then(checkStatus);
