@@ -1,5 +1,6 @@
 import React from "react";
 import { getAllItems } from "./client";
+import AddItemForm from "./forms/AddItemForm";
 import Item from "./Item";
 
 class Todo extends React.Component {
@@ -53,6 +54,9 @@ class Todo extends React.Component {
               />  
             )
           }
+          <AddItemForm
+            onSuccess = {this.fetchItems}
+          />
         </div>
       );
 
