@@ -80,7 +80,7 @@ public class ItemController {
     } 
 
     @DeleteMapping(path = "/{itemId}")
-    public ResponseEntity<String> deletedStudentById(@PathVariable("itemId") Integer itemId) throws ItemNotFoundException {
+    public ResponseEntity<String> deletedItemById(@PathVariable("itemId") Integer itemId) throws ItemNotFoundException {
         ResponseEntity<String> responseEntity;
 
         HttpHeaders headers = new HttpHeaders();
@@ -89,6 +89,25 @@ public class ItemController {
         this.itemService.deleteItemById(itemId);
 
         String msg = "Item "+ itemId +" successfully deleted!";
+        responseEntity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+
+        return responseEntity;
+    }
+
+    @PostMapping(path = "{itemId}/mark-item")
+    public ResponseEntity<String> markItem(@PathVariable("itemId") Integer itemId,
+                                            RequestEntity<Item> requestEntity) throws ItemNotFoundException {
+        ResponseEntity<String> responseEntity;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json"); 
+
+        Item itemToMark = requestEntity.getBody();
+        Boolean isMarked = itemToMark.getIsMarked();
+
+        this.itemService.markItem(itemId, isMarked);
+
+        String msg = "Item "+ itemId +" successfully marked!";
         responseEntity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
         return responseEntity;

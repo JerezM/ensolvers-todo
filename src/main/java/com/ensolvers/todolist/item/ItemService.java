@@ -23,12 +23,22 @@ public interface ItemService {
      * Update the content of the item with the given id.
      * @param itemId must not be null.
      * @param itemContent must not be null or empty string if you want to update this attribute.
+     * @throws ItemNotFoundException it will throw if the item with the given id it's not found.
      */
     public void updateItem(Integer itemId, String itemContent) throws ItemNotFoundException;
 
     /**
      * Delete the item by his id.
      * @param itemId must not be null.
+     * @throws ItemNotFoundException it will throw if the item with the given id it's not found.
      */
     public void deleteItemById(Integer itemId) throws ItemNotFoundException;
+
+    /**
+     * Mark/Unmark the item with the given id.
+     * @param itemId must not be null.
+     * @param isMarked must not be null.
+     * @throws ItemNotFoundException it will throw if the item with the given id it's not found.
+     */
+    public void markItem(Integer itemId, Boolean isMarked) throws ItemNotFoundException;
 }

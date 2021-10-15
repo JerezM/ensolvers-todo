@@ -55,5 +55,16 @@ public class ItemServiceImpl implements ItemService {
 
         this.itemRepository.deleteById(itemId);
     }
+
+    @Transactional
+    @Override
+    public void markItem(Integer itemId, Boolean isMarked) throws ItemNotFoundException {
+        Item itemFinded = this.itemRepository.findById(itemId)
+                            .orElseThrow(() -> new ItemNotFoundException("item with id: "+ itemId +" does not exist"));
+        
+        if( isMarked != null && !Objects.equals(itemFinded.getIsMarked(), isMarked) ) {
+            itemFinded.setIsMarked(isMarked);
+        }
+    }
     
 }
