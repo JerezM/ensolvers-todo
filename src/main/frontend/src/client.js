@@ -22,7 +22,7 @@ export const addNewItem = (itemContent) => {
             'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify(itemContent)
+        body: JSON.stringify({"itemContent": itemContent})
     })
     .then(checkStatus);
 }
