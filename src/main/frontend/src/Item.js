@@ -1,5 +1,5 @@
 import React from "react";
-import { markItem } from "./client"
+import { markItem, deleteItem } from "./client"
 
 class Item extends React.Component {
 
@@ -10,6 +10,8 @@ class Item extends React.Component {
             content: props.content,
             isMarked: props.isMarked
         };
+
+        this.handleClickDeleteItem = this.handleClickDeleteItem.bind(this);
     }
 
     updateIsMarked = () => {
@@ -20,6 +22,12 @@ class Item extends React.Component {
         markItem(this.state.id, mark);
     }
 
+    handleClickDeleteItem(event) {
+        deleteItem(this.state.id);
+        this.props.onSuccess();
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className="item">
@@ -27,6 +35,8 @@ class Item extends React.Component {
                 {this.state.content !== undefined ? 
                     <p>{this.state.content}</p> : null
                 }
+                <button className="btn-item">Edit</button>{" "}
+                <button className="btn-item" onClick={this.handleClickDeleteItem}>Remove</button>
             </div>
         );
     }

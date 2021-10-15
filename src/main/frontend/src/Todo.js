@@ -38,6 +38,15 @@ class Todo extends React.Component {
           });
     }
 
+    removeItem = (itemId) => {
+      var array = [...this.state.items]; // make a separate copy of the array
+      var index = array.indexOf(itemId)
+      if (index !== -1) {
+        array.splice(index, 1);
+        this.setState({people: array});
+      }
+    } 
+
     render() {
       const { items } = this.state;
 
@@ -51,6 +60,10 @@ class Todo extends React.Component {
                 id = {item.id}
                 content = {item.itemContent}
                 isMarked = {item.isMarked}
+                onSuccess = { () => {
+                  this.removeItem();
+                  this.fetchItems();                   
+                }}
               />  
             )
           }
