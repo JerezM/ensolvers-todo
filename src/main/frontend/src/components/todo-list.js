@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { retrieveItems, createItem } from '../actions/todo-items-action'
+import { retrieveItemsAction, createItemAction } from '../actions/todo-items-action'
 import TodoItem from './todo-item'
 
 const TodoList = () => {
@@ -13,7 +13,7 @@ const TodoList = () => {
     });*/
 
     useEffect(() => {
-        const fetchItems = () => dispatch(retrieveItems());
+        const fetchItems = () => dispatch(retrieveItemsAction());
         fetchItems();
     },[]);
 
