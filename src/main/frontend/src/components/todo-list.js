@@ -17,8 +17,8 @@ const TodoList = () => {
         fetchItems();
     },[]);
 
-    const items = useSelector(state => state.items.items)
-    console.log(items);
+    const items = useSelector(state => state.items)
+    console.log("Estos son los items pa: "+items);
 
     //const handleAddNewItem = ()
 
