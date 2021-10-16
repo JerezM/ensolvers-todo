@@ -7,6 +7,7 @@ import {
 } from './types';
 
 import TodoItemDataService from '../services/todo-item-service';
+import { Dispatch } from 'react';
 
 export function createItemAction(itemContent) {
   return async (dispatch) => {
@@ -58,16 +59,18 @@ export function updateItemAction(itemId, itemContent) {
 }
 
 export function deleteItemAction(itemId) {
-  try {
-    TodoItemDataService.deleteItem(itemId);
+  return async (dispatch) => {
+    try {
+      TodoItemDataService.deleteItem(itemId);
 
-    dispatch({
-      type: DELETE_ITEM,
-      payload: { itemId },
-    });
+      dispatch({
+        type: DELETE_ITEM,
+        payload: { itemId },
+      });
 
-  } catch (err) {
-    console.log(err);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
