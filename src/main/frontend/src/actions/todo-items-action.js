@@ -11,8 +11,8 @@ import TodoItemDataService from '../services/todo-item-service';
 export function createItemAction(itemContent) {
   return async (dispatch) => {
       try {
-        const res = await TodoItemDataService.addNewItem({ itemContent });
-  
+        const res = TodoItemDataService.addNewItem({ itemContent });
+        
         dispatch({
           type: CREATE_ITEM,
           payload: res.item,
@@ -28,7 +28,7 @@ export function retrieveItemsAction() {
   return async (dispatch) => {
       
       try {
-        const res = await TodoItemDataService.getAllItems();
+        const res = TodoItemDataService.getAllItems();
   
         dispatch({
           type: RETRIEVE_ITEMS,
@@ -44,7 +44,7 @@ export function retrieveItemsAction() {
 export function updateItemAction(itemId, itemContent) {
   return async (dispatch) => {
     try{
-      await TodoItemDataService.updateItem(itemId, itemContent);
+      TodoItemDataService.updateItem(itemId, itemContent);
   
         dispatch({
           type: UPDATE_ITEM,
@@ -59,7 +59,7 @@ export function updateItemAction(itemId, itemContent) {
 
 export function deleteItemAction(itemId) {
   try {
-    await TodoItemDataService.deleteItem(itemId);
+    TodoItemDataService.deleteItem(itemId);
 
     dispatch({
       type: DELETE_ITEM,
@@ -74,7 +74,7 @@ export function deleteItemAction(itemId) {
 export function markItemAction(itemId, isMarked) {
   return async (dispatch) => {
     try{
-      await TodoItemDataService.markItem(itemId, isMarked);
+      TodoItemDataService.markItem(itemId, isMarked);
   
       dispatch({
         type: MARK_ITEM,
