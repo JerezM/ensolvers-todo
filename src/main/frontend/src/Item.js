@@ -1,5 +1,6 @@
 import React from "react";
 import { markItem, deleteItem } from "./client"
+import { Link } from "react-router-dom";
 
 class Item extends React.Component {
 
@@ -30,13 +31,14 @@ class Item extends React.Component {
 
     render() {
         return (
-            <div className="item">
+            
+            <div className="todo-item">
                 <input type="checkbox" checked={this.state.isMarked} onChange={this.updateIsMarked}/>{" "}
                 {this.state.content !== undefined ? 
                     <p>{this.state.content}</p> : null
                 }
-                <button className="btn-item">Edit</button>{" "}
-                <button className="btn-item" onClick={this.handleClickDeleteItem}>Remove</button>
+                <Link to="/"><button className="btn-edit">Edit</button>{" "}</Link>
+                <button className="btn-remove" onClick={this.handleClickDeleteItem}>Remove</button>
             </div>
         );
     }
