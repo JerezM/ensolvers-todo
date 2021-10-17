@@ -39,7 +39,7 @@ class UpdateItemForm extends React.Component {
 
                     <div className="btn-update-item">
                         <input type="submit" value="Save"/>
-                        <input type="button" value="Cancel"/>
+                        <Link to={["/", "/items"]}><input type="button" value="Cancel"/></Link>
                     </div>
                 </form>
             </div>
