@@ -32,11 +32,14 @@ const TodoList = () => {
 
             <ul className="list-group">
                 {items.map( item => 
-                    <TodoItem
-                        key = {item.id}
-                        id = {item.id}
-                        item = {item}
-                    />)
+                    <li>
+                        <TodoItem
+                            key = {item.id}
+                            id = {item.id}
+                            item = {item}
+                        />
+                    </li>
+                    )
                 }
             </ul>
         </div>
