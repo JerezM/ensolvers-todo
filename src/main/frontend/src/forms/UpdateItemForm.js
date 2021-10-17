@@ -1,5 +1,6 @@
 import React from "react";
 import { updateItem } from '../client'
+import { Link } from "react-router-dom";
 
 class UpdateItemForm extends React.Component {
 
@@ -21,7 +22,7 @@ class UpdateItemForm extends React.Component {
     handleSubmit(event) {
         let content = this.state.itemContent;
         console.log("itemContent: " +content);
-        updateItem(id, content);
+        updateItem(this.state.id, content);
 
         this.props.onSuccess();
 

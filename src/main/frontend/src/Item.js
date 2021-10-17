@@ -7,8 +7,8 @@ import {
     Link
 } from "react-router-dom";
 
-import { UpdateItemForm } from './forms/UpdateItemForm'
-import { Todo } from './Todo'
+import UpdateItemForm from './forms/UpdateItemForm'
+import Todo from './Todo'
 
 class Item extends React.Component {
 
@@ -52,17 +52,18 @@ class Item extends React.Component {
                 </div>
 
                 <Switch>
-                    <Route path={["/", "/items"]}>
-                        <Todo/>
-                    </Route>
-                    <Route path="/items/edit">
+                    <Route exact path="/items/edit" component={
                         <UpdateItemForm 
                             key = {id}
                             id = {id}
                             itemContent = {content}
                             onSuccess = {this.props.onSuccess}
-                        />
-                    </Route>
+                        />} 
+                    />
+
+                    
+                        
+                    
                 </Switch>
             </Router>
         );
