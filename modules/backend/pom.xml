@@ -12,7 +12,7 @@
 	<artifactId>todo-list</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>todo-list</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Rework practice project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
